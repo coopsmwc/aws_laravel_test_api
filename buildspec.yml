@@ -1,0 +1,22 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - apt-get install -y curl
+      - curl -sL https://deb.nodesource.com/setup_8.x | sudo bash
+      - apt-get install -y nodejs
+      - node -v
+      - npm -v
+  pre_build:
+    commands:
+      - git checkout develop
+  build:
+    commands:
+      - echo $AWS_REGION
+      - composer install
+      - npm install
+      - npm run prod
+artifacts:
+  files:
+    - '**/*'
+  name: test-build-$(date +%Y-%m-%d)-$CODEBUILD_BUILD_ID
