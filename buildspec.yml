@@ -5,6 +5,7 @@ phases:
       - git checkout develop
   build:
     commands:
+      - cp .env.example .env
       - composer install
 artifacts:
   files:
