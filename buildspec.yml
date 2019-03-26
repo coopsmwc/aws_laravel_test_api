@@ -2,7 +2,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - git checkout develop
+    # for independant build stage - git checkout develop
   build:
     commands:
       - cp .env.example .env
