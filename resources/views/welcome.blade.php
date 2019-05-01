@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel API
+                    Laravel API Service {{ env('HOSTNAME') }}
                 </div>
 
                 <div class="links">

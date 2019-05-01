@@ -1,14 +1,9 @@
-FROM php:7.2-apache
+FROM ulsmith/alpine-apache-php7
 
-RUN apt-get update && apt-get install -y vim \
-&& apt-get install -y iputils-ping && apt-get install -y net-tools \
-&& apt-get install -y mysql-client && a2enmod rewrite
+RUN apk add --no-cache mysql-client
 
-RUN docker-php-ext-install pdo pdo_mysql
+COPY ./ /app
+RUN chown -R apache:apache  /app/storage
 
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-COPY docker/files/aws-laravel-test.conf /etc/apache2/sites-enabled/.
-
-# ENV DB_HOST=mysql
+ENV DB_HOST=beanstalk-abs.ckkzpudtbjwv.us-east-2.rds.amazonaws.com
 

@@ -1,0 +1,8 @@
+FROM ulsmith/alpine-apache-php7
+
+RUN apk add --no-cache mysql-client
+
+#COPY ./ /app
+#RUN chown -R apache:apache  /app/storage
+
+ENV DB_HOST=mysql
